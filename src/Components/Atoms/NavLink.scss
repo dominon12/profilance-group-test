@@ -1,0 +1,15 @@
+@mixin link-style() {
+  text-decoration: none;
+  color: gray;
+  font-size: 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.nav-link {
+  @include link-style();
+
+  a {
+    @include link-style();
+  }
+}
