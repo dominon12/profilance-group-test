@@ -1,0 +1,26 @@
+.header {
+  padding: 1rem;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+
+  @media (max-width: 445px) {
+    flex-direction: column;
+  }
+
+  &__part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child {
+      @media (max-width: 445px) {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
