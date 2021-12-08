@@ -7,7 +7,8 @@ import ArticlesGrid from "../Organisms/ArticlesGrid";
 import { getArticles } from "../../Services/BackendService";
 
 /**
- * Page with feed
+ * Page with a list of articles
+ * and a search bar.
  *
  * @return {*} {JSX.Element}
  */
@@ -16,6 +17,7 @@ const Feed = () => {
   const [searchQuery, setSearchQuery] = useState("");
   // articles
   const [articles, setArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -28,6 +30,7 @@ const Feed = () => {
     if (response.success) {
       // set articles
       setArticles(response.data);
+      setFilteredArticles(response.data);
     } else {
       // set error
       setError(response.error);
@@ -44,7 +47,34 @@ const Feed = () => {
     fetchArticles();
   }, []);
 
-  useEffect(() => {}, [searchQuery]);
+  /**
+   * Filters a list of articles
+   * based on searchQuery param.
+   *
+   * @param {*} searchQuery - phrase to find in 'text' or 'title' fields.
+   */
+  const filterArticles = (searchQuery) => {
+    let nextArticles = articles;
+
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase();
+      nextArticles = articles.filter((article) => {
+        const searchTarget =
+          article.title.toLowerCase() + article.text.toLowerCase();
+        return searchTarget.includes(lowerQuery);
+      });
+    }
+
+    setFilteredArticles(nextArticles);
+  };
+
+  /**
+   * Filter articles on every
+   * 'searchQuery' change.
+   */
+  useEffect(() => {
+    filterArticles(searchQuery);
+  }, [searchQuery]);
 
   return (
     <div className="feed">
@@ -54,8 +84,9 @@ const Feed = () => {
         setValue={setSearchQuery}
         placeholder="Поиск"
         labelText="Поиск"
+        disableValidation
       />
-      <ArticlesGrid articles={articles} isLoading={isLoading} />
+      <ArticlesGrid articles={filteredArticles} isLoading={isLoading} />
     </div>
   );
 };

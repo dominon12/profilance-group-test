@@ -23,6 +23,7 @@ const Input = forwardRef(
       type,
       required,
       disabled,
+      disableValidation,
       validationOptions,
     },
     ref
@@ -65,7 +66,7 @@ const Input = forwardRef(
       const nextValue = e.target.value;
       setValue(nextValue);
       // validate if necessary
-      instantTouched && validateFieldValue(nextValue);
+      instantTouched && !disableValidation && validateFieldValue(nextValue);
     };
 
     return (
@@ -79,7 +80,11 @@ const Input = forwardRef(
         <input
           ref={ref}
           className={`form-field ${
-            isValid ? (wasTouched ? "valid" : "") : "invalid"
+            isValid
+              ? wasTouched && !disableValidation
+                ? "valid"
+                : ""
+              : "invalid"
           }`}
           id={id}
           name={name}
