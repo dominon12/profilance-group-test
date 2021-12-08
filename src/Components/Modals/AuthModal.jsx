@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import Modal from "../Templates/Modal";
 import { AuthModalContext } from "../../Contexts/AuthModalContext";
+import LoginForm from "../Organisms/LoginForm";
 
 /**
  * Modal window with a login form.
@@ -13,7 +14,7 @@ const AuthModal = () => {
 
   return (
     <Modal visible={visible} setVisible={setVisible}>
-      Hi there
+      <LoginForm />
     </Modal>
   );
 };
