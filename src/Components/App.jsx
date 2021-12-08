@@ -5,11 +5,20 @@ import "./App.scss";
 // pages
 import Home from "./Pages/Home";
 import Feed from "./Pages/Feed";
+// components
+import Header from "./Organisms/Header";
 
+/**
+ * The main component with routing logic.
+ *
+ * @return {*}  {JSX.Element}
+ */
 function App() {
   return (
     <Router>
       <div className="document">
+        <Header />
+
         <div className="document__content">
           <Routes>
             <Route path="/" element={<Home />} />
