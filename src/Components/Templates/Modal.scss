@@ -39,6 +39,10 @@
       font-size: 1.6rem;
       color: black;
       cursor: pointer;
+
+      @media (max-width: 464px) {
+        top: 4rem;
+      }
     }
   }
 }
