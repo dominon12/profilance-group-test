@@ -1,0 +1,12 @@
+.article-card {
+  &__title {
+    margin-bottom: 0.5rem;
+    height: 54px;
+    overflow: hidden;
+  }
+  &__date {
+    color: gray;
+  }
+  &__text {
+  }
+}
