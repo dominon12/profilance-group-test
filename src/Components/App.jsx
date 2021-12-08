@@ -7,6 +7,8 @@ import Home from "./Pages/Home";
 import Feed from "./Pages/Feed";
 // components
 import Header from "./Organisms/Header";
+// modals
+import AuthModal from "./Modals/AuthModal";
 
 /**
  * The main component with routing logic.
@@ -25,6 +27,8 @@ function App() {
             <Route path="/feed" element={<Feed />} />
           </Routes>
         </div>
+
+        <AuthModal />
       </div>
     </Router>
   );
