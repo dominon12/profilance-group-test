@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./AuthBar.scss";
 import NavLink from "../Atoms/NavLink";
 import { AuthModalContext } from "../../Contexts/AuthModalContext";
+import { removeUser } from "../../Redux/User/Actions";
 
 /**
  * Renders login link if user
@@ -12,16 +14,32 @@ import { AuthModalContext } from "../../Contexts/AuthModalContext";
  * @return {*} {JSX.Element}
  */
 const AuthBar = () => {
+  // auth modal
   const { setVisible } = useContext(AuthModalContext);
+  // redux
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const isAuthenticated = false;
+  /**
+   * Opens auth modal so user
+   * can login.
+   */
+  const openAuthModal = () => setVisible(true);
+
+  /**
+   * Removes user's data
+   * from redux's store.
+   */
+  const logOut = () => dispatch(removeUser());
 
   return (
     <NavLink>
-      {isAuthenticated ? (
-        <div className="auth-bar-link">Выйти</div>
+      {user ? (
+        <div className="auth-bar-link" onClick={logOut}>
+          Выйти
+        </div>
       ) : (
-        <div className="auth-bar-link" onClick={() => setVisible(true)}>
+        <div className="auth-bar-link" onClick={openAuthModal}>
           Войти
         </div>
       )}
