@@ -11,7 +11,7 @@ export const emailPattern =
  */
 function emptyStringValidator(value, required) {
   if (required && value.length === 0) {
-    return "This field can't be empty";
+    return "Это поле не может быть пустым";
   }
 }
 
@@ -25,7 +25,7 @@ function emptyStringValidator(value, required) {
  */
 function regexpValidator(value, regexp) {
   if (regexp && !regexp.test(value)) {
-    return "Field's value doesn't match with specified pattern";
+    return "Значение поля не совпадает с его паттерном";
   }
 }
 
@@ -39,7 +39,7 @@ function regexpValidator(value, regexp) {
  */
 function minLengthValidator(value, minLength) {
   if (minLength && value.length < minLength) {
-    return `Field's value must be at least ${minLength} characters long`;
+    return `Длина введённого значения должна быть минимум ${minLength} символа`;
   }
 }
 
@@ -54,7 +54,7 @@ function minLengthValidator(value, minLength) {
  */
 function maxLengthValidator(value, maxLength) {
   if (maxLength && value.length > maxLength) {
-    return `Field's value can't be longer than ${maxLength} characters`;
+    return `Введённое значение должно быть меньше ${maxLength} символов`;
   }
 }
 
