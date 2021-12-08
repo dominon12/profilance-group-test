@@ -105,7 +105,9 @@ const LoginForm = () => {
         required
       />
       {formError && <FormError>{formError}</FormError>}
-      <Button isLoading={isLoading}>Войти</Button>
+      <Button disabled={!formValid} isLoading={isLoading}>
+        Войти
+      </Button>
     </Form>
   );
 };
