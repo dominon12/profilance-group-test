@@ -16,7 +16,7 @@ const AuthModalProvider = ({ children }) => {
   const [visible, setVisible] = useState(contextDefaultValues.visible);
 
   useEffect(() => {
-    document.body.style.overflowY = visible ? "auto" : "hidden";
+    document.body.style.overflowY = visible ? "hidden" : "auto";
   }, [visible]);
 
   return (
