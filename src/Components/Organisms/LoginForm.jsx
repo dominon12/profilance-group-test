@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Form from "../Templates/Form";
 import Input from "../Molecules/Input";
 import Button from "../Atoms/Button";
+import FormError from "../Atoms/FormError";
 import { emailPattern, checkFormValid } from "../../Services/FormService";
 
 /**
@@ -21,6 +22,7 @@ const LoginForm = () => {
   // form props
   const [formValid, setFormValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState("");
 
   /**
    * Checks whether the form is valid
@@ -70,6 +72,7 @@ const LoginForm = () => {
         disabled={isLoading}
         required
       />
+      {formError && <FormError>{formError}</FormError>}
       <Button isLoading={isLoading}>Войти</Button>
     </Form>
   );
