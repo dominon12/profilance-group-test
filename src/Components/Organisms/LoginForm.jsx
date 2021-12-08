@@ -62,7 +62,7 @@ const LoginForm = () => {
     // check backend's response
     if (response.success) {
       // add user to the store
-      dispatch(addUser(email));
+      dispatch(addUser(response.data.email));
       // close auth modal
       setVisible(false);
     } else {

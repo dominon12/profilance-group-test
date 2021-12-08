@@ -1,4 +1,5 @@
 import { TEST_USER } from "./CredentialsService";
+import { articles } from "./StoreService";
 
 /**
  * Simulates request to the backend
@@ -25,6 +26,23 @@ export async function performLogin(user) {
       error: "Вы ввели неверный пароль",
     };
   }
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(response), 1500);
+  });
+}
+
+/**
+ * Simulates GET request to a backend.
+ *
+ * @export
+ * @return {*} {Promise}
+ */
+export async function getArticles() {
+  const response = {
+    success: true,
+    data: articles,
+  };
 
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(response), 1500);
